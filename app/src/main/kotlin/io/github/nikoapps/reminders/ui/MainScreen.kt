@@ -43,7 +43,10 @@ import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -221,7 +224,7 @@ private fun ReminderTile(tile: Tile, onClick: () -> Unit, modifier: Modifier = M
                 Box(modifier = Modifier.weight(1f).fillMaxWidth(), contentAlignment = Alignment.Center) {
                     ReminderPicture(
                         reminder = reminder,
-                        modifier = Modifier.fillMaxHeight().aspectRatio(1f, matchHeightConstraintsFirst = true),
+                        modifier = Modifier.aspectRatio(1f, matchHeightConstraintsFirst = true),
                     )
                 }
                 TileLine(
@@ -230,51 +233,29 @@ private fun ReminderTile(tile: Tile, onClick: () -> Unit, modifier: Modifier = M
                     color = MaterialTheme.colorScheme.onSurface,
                     modifier = Modifier.padding(top = 6.dp).heightIn(max = lineMaxHeight),
                 )
-                Row(
-                    modifier = Modifier.heightIn(max = lineMaxHeight),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
-                ) {
-                    TileLine(
-                        text = time,
-                        style = MaterialTheme.typography.titleMedium,
+                // One line that shrinks as a whole, so the time and Done both stay readable at 200% font size.
+                val stateColor = if (tile.today == Outcome.Done) successColor() else MaterialTheme.colorScheme.error
+                BasicText(
+                    text = buildAnnotatedString {
+                        append(time)
+                        if (state != null) {
+                            append("  ")
+                            withStyle(SpanStyle(color = stateColor, fontWeight = FontWeight.Bold)) {
+                                if (tile.today == Outcome.Done) append("✓ ")
+                                append(state)
+                            }
+                        }
+                    },
+                    style = shrinkingLines(MaterialTheme.typography.titleMedium).copy(
                         color = MaterialTheme.colorScheme.onSurface,
-                        modifier = Modifier.weight(1f, fill = false),
-                    )
-                    when (tile.today) {
-                        Outcome.Done -> TodayMark(
-                            text = state.orEmpty(),
-                            color = successColor(),
-                            tick = true,
-                            modifier = Modifier.weight(1f, fill = false),
-                        )
-                        Outcome.Missed -> TodayMark(
-                            text = state.orEmpty(),
-                            color = MaterialTheme.colorScheme.error,
-                            tick = false,
-                            modifier = Modifier.weight(1f, fill = false),
-                        )
-                        Outcome.Due, null -> Unit
-                    }
-                }
+                        textAlign = TextAlign.Center,
+                    ),
+                    maxLines = 1,
+                    autoSize = TextAutoSize.StepBased(minFontSize = 8.sp, maxFontSize = MaterialTheme.typography.titleMedium.fontSize),
+                    modifier = Modifier.fillMaxWidth().heightIn(max = lineMaxHeight),
+                )
             }
         }
-    }
-}
-
-/** "Done" with a tick, or "Missed", after the time. */
-@Composable
-private fun TodayMark(text: String, color: Color, tick: Boolean, modifier: Modifier = Modifier) {
-    Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
-        if (tick) {
-            Icon(
-                painter = painterResource(R.drawable.ic_check),
-                contentDescription = null,
-                tint = color,
-                modifier = Modifier.size(20.dp),
-            )
-        }
-        TileLine(text = text, style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold), color = color)
     }
 }
 
@@ -291,7 +272,7 @@ private fun TileLine(text: String, style: TextStyle, color: Color, modifier: Mod
         style = shrinkingLines(style).copy(color = color, textAlign = TextAlign.Center),
         maxLines = 1,
         overflow = TextOverflow.Ellipsis,
-        autoSize = TextAutoSize.StepBased(minFontSize = 12.sp, maxFontSize = style.fontSize),
+        autoSize = TextAutoSize.StepBased(minFontSize = 10.sp, maxFontSize = style.fontSize),
         modifier = modifier,
     )
 }
