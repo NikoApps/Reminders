@@ -2,9 +2,9 @@
 
 Hear a reminder in a familiar voice, with a photo, at the right time. Niko Reminders is for people who can't easily read a screen: people who can't read, older people and people with low vision. Part of [Niko](https://nikoapps.github.io): simple, free Android apps with no ads and no tracking.
 
-**Status:** early development. It doesn't remind you of anything yet.
+**Status:** early development, not released yet. Reminders play, show over the lock screen and keep repeating until Done; device testing comes next.
 
-## What it will do
+## What it does
 
 - A family member records the reminder, such as "take the white pill", and adds a photo
 - At the set time, the phone plays the recording and shows the photo, with a big Done button
