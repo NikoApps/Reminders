@@ -88,7 +88,7 @@ fun ReminderScreen(
             Box(modifier = Modifier.weight(1f).fillMaxWidth(), contentAlignment = Alignment.Center) {
                 ReminderPicture(
                     reminder = reminder,
-                    modifier = Modifier.fillMaxHeight().aspectRatio(1f, matchHeightConstraintsFirst = true),
+                    modifier = Modifier.aspectRatio(1f, matchHeightConstraintsFirst = true),
                 )
             }
             BasicText(

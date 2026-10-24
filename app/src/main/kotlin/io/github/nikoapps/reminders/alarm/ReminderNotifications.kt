@@ -91,7 +91,9 @@ object ReminderNotifications {
             .setPriority(NotificationCompat.PRIORITY_MAX)
             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             .setOngoing(true)
-            .setSilent(true)
+            // Not setSilent: it puts the notification in a group that isn't allowed to alert, and
+            // Android then drops the full-screen intent (seen on a Samsung A01). The channel itself
+            // has no sound or vibration; the service plays the reminder.
             .setContentIntent(open)
             .setFullScreenIntent(open, true)
             .addAction(0, context.getString(R.string.done), ReminderService.doneIntent(context, played.reminderId))
