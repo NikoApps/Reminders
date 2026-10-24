@@ -7,7 +7,7 @@ Reminders in a familiar voice, with a photo, for people who can't easily read a 
 The private Hub repo at `../Hub` (relative to this repo) is the source of truth. Read the relevant doc before changing behaviour, and don't repeat its reasoning here.
 
 - Reminders spec: `../Hub/docs/02-product/apps/03-reminders/01-spec.md`
-- Scope decision: `../Hub/docs/07-decisions/0035-reminders-scope.md`
+- Scope decision: `../Hub/docs/07-decisions/0037-reminders-scope.md`
 - Design system (colour, type, layout, components, speech): `../Hub/docs/04-design-system/`
 - Words on screen and spoken phrases: `../Hub/docs/03-brand/04-voice-and-tone.md`
 - Stack and text-to-speech: `../Hub/docs/06-engineering/01-platform-and-stack.md`
