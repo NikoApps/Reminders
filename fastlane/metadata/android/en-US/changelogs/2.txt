@@ -1,0 +1,6 @@
+* First release
+* A family member records a message and adds a photo or a drawing
+* At the set time the phone plays it, even on silent, and shows it over the lock screen
+* Plays again every 5 minutes until Done is pressed, then shows as missed
+* Up to 6 reminders on one screen that never moves
+* Settings behind a helper PIN, with checks that tell you why a reminder might not play
