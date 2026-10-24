@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Built-in reminder picture: eye drops. Drawn for Niko Reminders. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <group>
+        <path
+            android:fillColor="#FF1F1A14"
+            android:pathData="M24,3 C24,3 16,12 16,17.5 A8,8 0 0 0 32,17.5 C32,12 24,3 24,3 Z" />
+        <path
+            android:pathData="M5,36 Q24,22 43,36 Q24,50 5,36 Z"
+            android:strokeColor="#FF1F1A14"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round"
+            android:strokeWidth="3" />
+        <path
+            android:fillColor="#FF1F1A14"
+            android:pathData="M24,31 A5,5 0 1 1 23.99,31 Z" />
+    </group>
+</vector>

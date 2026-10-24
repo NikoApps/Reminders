@@ -9,11 +9,12 @@ import java.util.Base64
  * Turns the reminders into one short string for DataStore and back. Six reminders don't need a
  * database or a serialisation library.
  *
- * Each reminder is `place;id;name;minuteOfDay;repeat;photoVersion;recordingVersion;activeFrom`,
+ * Each reminder is `place;id;name;minuteOfDay;repeat;photoVersion;recordingVersion;activeFrom;picture`,
  * with the text fields in URL-safe Base64 so any script or punctuation is safe. The repeat is `d`
  * for every day, `w` and ISO day numbers for chosen days (`w135` is Monday, Wednesday and
  * Friday), or `o` and a date for once (`o2026-10-24`). Reminders are joined with commas. Records
- * that don't read back are skipped rather than losing every reminder.
+ * that don't read back are skipped rather than losing every reminder. The picture is the
+ * [Picture.key], empty for none; records saved before pictures have no such field.
  */
 object RemindersCodec {
     private val encoder = Base64.getUrlEncoder().withoutPadding()
@@ -30,6 +31,7 @@ object RemindersCodec {
                 r.photoVersion.toString(),
                 r.recordingVersion.toString(),
                 r.activeFrom.toString(),
+                r.picture?.key.orEmpty(),
             ).joinToString(";")
         }
 
@@ -50,6 +52,7 @@ object RemindersCodec {
                     photoVersion = fields[5].toInt().coerceAtLeast(0),
                     recordingVersion = fields[6].toInt().coerceAtLeast(0),
                     activeFrom = fields[7].toLong(),
+                    picture = Picture.of(fields.getOrNull(8)),
                 )
             }.getOrNull()
         }

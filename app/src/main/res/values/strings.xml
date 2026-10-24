@@ -118,14 +118,32 @@
     <string name="editor_add_title">Add a reminder</string>
     <string name="editor_change_title">Change a reminder</string>
     <string name="editor_photo">Photo</string>
-    <string name="editor_photo_how">A photo of the pill, the packet or whatever the reminder is for. It shows on the screen when it\'s time.</string>
+    <string name="editor_photo_how">A photo of the pill, the packet or whatever the reminder is for. It shows on the screen when it\'s time. Without a photo, use a drawing instead.</string>
     <string name="editor_photo_label">The photo on the reminder</string>
     <string name="editor_photo_take">Take a photo</string>
-    <string name="editor_photo_choose">Choose a photo</string>
+    <string name="editor_photo_choose">Choose from your photos</string>
     <string name="editor_photo_remove">Remove the photo</string>
     <string name="editor_photo_unreadable">That photo couldn\'t be opened. Try another one.</string>
     <string name="editor_no_photo_app">This phone has no app to choose a photo from. Take a photo instead.</string>
-    <string name="editor_no_camera_app">This phone has no camera app to take a photo with. Choose a photo instead.</string>
+    <string name="editor_no_camera_app">This phone has no camera app to take a photo with. Choose from your photos instead.</string>
+    <string name="editor_picture_choose">Use a drawing</string>
+    <string name="editor_picture_remove">Remove the drawing</string>
+    <string name="picture_title">Choose a drawing</string>
+    <string name="picture_help">A drawing shows on the screen when there\'s no photo. A photo of the real thing works best.</string>
+    <!-- TalkBack label of the drawing the helper has chosen. -->
+    <string name="picture_chosen">%1$s, chosen</string>
+    <string name="picture_pill">Pill</string>
+    <string name="picture_bottle">Medicine</string>
+    <string name="picture_eye_drops">Eye drops</string>
+    <string name="picture_injection">Injection</string>
+    <string name="picture_water">Water</string>
+    <string name="picture_meal">Meal</string>
+    <string name="picture_prayer">Prayer</string>
+    <string name="picture_call">Phone call</string>
+    <string name="picture_doctor">Doctor</string>
+    <string name="picture_walk">Walk</string>
+    <string name="picture_sleep">Sleep</string>
+    <string name="picture_wash">Wash</string>
     <string name="crop_title">Fit the photo in the square</string>
     <!-- TalkBack label of the square showing the photo while it's cropped. -->
     <string name="crop_preview">The photo as it will look on the reminder</string>

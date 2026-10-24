@@ -13,7 +13,9 @@ import androidx.compose.runtime.produceState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -22,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import io.github.nikoapps.commons.photo.Photos
 import io.github.nikoapps.commons.theme.NikoColors
 import io.github.nikoapps.reminders.R
+import io.github.nikoapps.reminders.reminders.Picture
 import io.github.nikoapps.reminders.reminders.Reminder
 import io.github.nikoapps.reminders.reminders.ReminderFiles
 import kotlinx.coroutines.Dispatchers
@@ -61,18 +64,29 @@ fun rememberPhoto(key: String, file: () -> File): ImageBitmap? {
 }
 
 /**
- * The reminder's photo, or a bell on Reminders' coral when it has none or the photo can't be
- * read. Purely a picture: the name next to it carries the meaning, so it has no TalkBack label.
+ * The reminder's photo, or its built-in picture when it has none, or a bell on Reminders' coral
+ * when it has neither or the photo can't be read. Purely a picture: the name next to it carries
+ * the meaning, so it has no TalkBack label.
  */
 @Composable
 fun ReminderPicture(reminder: Reminder, modifier: Modifier = Modifier) {
+    val fallback: @Composable () -> Unit = {
+        val picture = reminder.picture
+        if (picture == null) Bell(modifier) else BuiltInPicture(picture, modifier)
+    }
     if (!reminder.hasPhoto) {
-        Bell(modifier)
+        fallback()
         return
     }
     val context = LocalContext.current.applicationContext
     val photo = rememberPhoto(PhotoCache.key(reminder)) { ReminderFiles.photo(context, reminder.id) }
-    if (photo == null) Bell(modifier) else Photo(photo, modifier)
+    if (photo == null) fallback() else Photo(photo, modifier)
+}
+
+/** One of the built-in pictures, drawn in ink on its own colour. */
+@Composable
+fun BuiltInPicture(picture: Picture, modifier: Modifier = Modifier) {
+    Symbol(painterResource(picture.drawable), Color(picture.background), modifier)
 }
 
 /** A square photo with rounded corners. */
@@ -88,15 +102,15 @@ fun Photo(photo: ImageBitmap, modifier: Modifier = Modifier, contentDescription:
 
 @Composable
 private fun Bell(modifier: Modifier) {
+    Symbol(painterResource(R.drawable.ic_notification), NikoColors.Apps.Reminders, modifier)
+}
+
+@Composable
+private fun Symbol(painter: Painter, background: Color, modifier: Modifier) {
     Box(
-        modifier = modifier.clip(RoundedCornerShape(16.dp)).background(NikoColors.Apps.Reminders),
+        modifier = modifier.clip(RoundedCornerShape(16.dp)).background(background),
         contentAlignment = Alignment.Center,
     ) {
-        Icon(
-            painter = painterResource(R.drawable.ic_notification),
-            contentDescription = null,
-            tint = NikoColors.Ink,
-            modifier = Modifier.fillMaxSize(0.6f),
-        )
+        Icon(painter = painter, contentDescription = null, tint = NikoColors.Ink, modifier = Modifier.fillMaxSize(0.6f))
     }
 }

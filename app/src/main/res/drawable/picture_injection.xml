@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Built-in reminder picture: injection. Drawn for Niko Reminders. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <group
+        android:pivotX="24"
+        android:pivotY="24"
+        android:rotation="-45">
+        <path
+            android:pathData="M13,19 H31 V29 H13 Z"
+            android:strokeColor="#FF1F1A14"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round"
+            android:strokeWidth="3" />
+        <path
+            android:pathData="M31,24 H39 M39,18 V30 M3,24 H13 M18,19 V23 M23,19 V23 M28,19 V23"
+            android:strokeColor="#FF1F1A14"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round"
+            android:strokeWidth="2.5" />
+    </group>
+</vector>

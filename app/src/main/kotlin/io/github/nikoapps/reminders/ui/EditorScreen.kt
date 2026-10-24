@@ -68,6 +68,7 @@ import io.github.nikoapps.commons.ui.SolidButton
 import io.github.nikoapps.commons.ui.ValueRow
 import io.github.nikoapps.reminders.R
 import io.github.nikoapps.reminders.reminders.EditorProblem
+import io.github.nikoapps.reminders.reminders.Picture
 import io.github.nikoapps.reminders.reminders.Reminder
 import io.github.nikoapps.reminders.reminders.ReminderFiles
 import io.github.nikoapps.reminders.reminders.RepeatKind
@@ -141,6 +142,9 @@ fun EditorScreen(
     // The photo being cropped. While set, the crop screen shows instead of the form.
     var cropSource by rememberSaveable { mutableStateOf<String?>(null) }
     var photoMessage by rememberSaveable { mutableStateOf<Int?>(null) }
+    // A built-in picture, for a reminder without a photo. Choosing one removes the photo, and a new photo removes it.
+    var pictureKey by rememberSaveable { mutableStateOf(existing?.picture?.key) }
+    var pickingPicture by rememberSaveable { mutableStateOf(false) }
 
     // Once Save hands the new photo and recording over, the view model moves them into place.
     var saved by remember { mutableStateOf(false) }
@@ -175,6 +179,7 @@ fun EditorScreen(
         if (uri != null) cropSource = uri.toString()
     }
     val hasPhoto = newPhoto != null || (!photoRemoved && editing?.hasPhoto == true)
+    val picture = Picture.of(pictureKey)
 
     val save = {
         when {
@@ -194,6 +199,7 @@ fun EditorScreen(
                             photoRemoved -> FileEdit.Remove
                             else -> FileEdit.Keep
                         },
+                        picture = picture,
                         recording = when {
                             newRecording != null -> FileEdit.Replace(newRecording!!)
                             recordingRemoved -> FileEdit.Remove
@@ -216,6 +222,7 @@ fun EditorScreen(
                 newPhoto = file.path
                 photoRemoved = false
                 photoMessage = null
+                pictureKey = null
                 cropSource = null
             },
             onCancel = { cropSource = null },
@@ -223,6 +230,22 @@ fun EditorScreen(
                 photoMessage = R.string.editor_photo_unreadable
                 cropSource = null
             },
+        )
+        return
+    }
+
+    if (pickingPicture) {
+        PicturePicker(
+            chosen = picture,
+            onPick = {
+                pictureKey = it.key
+                newPhoto?.let { path -> File(path).delete() }
+                newPhoto = null
+                photoRemoved = editing?.hasPhoto == true
+                photoMessage = null
+                pickingPicture = false
+            },
+            onCancel = { pickingPicture = false },
         )
         return
     }
@@ -246,7 +269,7 @@ fun EditorScreen(
                 // Photo
                 Heading(stringResource(R.string.editor_photo), side)
                 Note(stringResource(R.string.editor_photo_how), modifier = side)
-                EditorPhoto(editing = editing, newPhoto = newPhoto, removed = photoRemoved, modifier = side)
+                EditorPhoto(editing = editing, newPhoto = newPhoto, removed = photoRemoved, picture = picture, modifier = side)
                 photoMessage?.let { Note(stringResource(it), warning = true, modifier = side) }
                 SecondaryButton(
                     text = stringResource(R.string.editor_photo_take),
@@ -270,6 +293,18 @@ fun EditorScreen(
                     },
                     modifier = side,
                 )
+                SecondaryButton(
+                    text = stringResource(R.string.editor_picture_choose),
+                    onClick = { pickingPicture = true },
+                    modifier = side,
+                )
+                if (picture != null && !hasPhoto) {
+                    SecondaryButton(
+                        text = stringResource(R.string.editor_picture_remove),
+                        onClick = { pictureKey = null },
+                        modifier = side,
+                    )
+                }
                 if (hasPhoto) {
                     SecondaryButton(
                         text = stringResource(R.string.editor_photo_remove),
@@ -428,9 +463,9 @@ fun EditorScreen(
     }
 }
 
-/** The photo as it will be on the tile: the new one, the saved one, or the bell when there's none. */
+/** The picture as it will be on the tile: the new photo, the saved one, the built-in picture, or the bell. */
 @Composable
-private fun EditorPhoto(editing: Reminder?, newPhoto: String?, removed: Boolean, modifier: Modifier) {
+private fun EditorPhoto(editing: Reminder?, newPhoto: String?, removed: Boolean, picture: Picture?, modifier: Modifier) {
     val context = LocalContext.current
     val square = Modifier.size(160.dp)
     Box(modifier = modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
@@ -442,7 +477,7 @@ private fun EditorPhoto(editing: Reminder?, newPhoto: String?, removed: Boolean,
         if (photo != null) {
             Photo(photo, square, contentDescription = stringResource(R.string.editor_photo_label))
         } else {
-            val placeholder = editing?.copy(photoVersion = 0) ?: Reminder("", "", LocalTime.MIDNIGHT, Repeat.EveryDay, 0)
+            val placeholder = Reminder("", "", LocalTime.MIDNIGHT, Repeat.EveryDay, 0, picture = picture)
             ReminderPicture(placeholder, square)
         }
     }

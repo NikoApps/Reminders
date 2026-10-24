@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Built-in reminder picture: bottle. Drawn for Niko Reminders. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <group>
+        <path
+            android:fillColor="#FF1F1A14"
+            android:pathData="M16,5 H32 V12 H16 Z" />
+        <path
+            android:pathData="M16,14 H32 A4,4 0 0 1 36,18 V39 A4,4 0 0 1 32,43 H16 A4,4 0 0 1 12,39 V18 A4,4 0 0 1 16,14 Z"
+            android:strokeColor="#FF1F1A14"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round"
+            android:strokeWidth="3" />
+        <path
+            android:fillColor="#FF1F1A14"
+            android:pathData="M22,21 H26 V25 H30 V29 H26 V33 H22 V29 H18 V25 H22 Z" />
+    </group>
+</vector>

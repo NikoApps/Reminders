@@ -57,6 +57,8 @@ data class ReminderEdit(
     val place: Int,
     val photo: FileEdit,
     val recording: FileEdit,
+    /** Shown when there's no photo. A new photo replaces it. */
+    val picture: io.github.nikoapps.reminders.reminders.Picture?,
 )
 
 /** The reminders, their history and the helper's settings, shared by every screen in the app. */
@@ -201,6 +203,7 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
                     photoVersion = photoVersion,
                     recordingVersion = recordingVersion,
                     activeFrom = if (changed) System.currentTimeMillis() else existing.activeFrom,
+                    picture = if (photoVersion > 0) null else edit.picture,
                 )
                 remindersRepository.updateReminders { withReminderSaved(it, reminder) }
                 if (edit.photo !is FileEdit.Keep) PhotoCache.forget(id)

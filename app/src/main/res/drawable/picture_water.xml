@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Built-in reminder picture: water. Drawn for Niko Reminders. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <group>
+        <path
+            android:pathData="M11,7 H37 L33.5,43 H14.5 Z"
+            android:strokeColor="#FF1F1A14"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round"
+            android:strokeWidth="3" />
+        <path
+            android:fillColor="#FF1F1A14"
+            android:pathData="M13,22 H35 L33.5,43 H14.5 Z" />
+    </group>
+</vector>

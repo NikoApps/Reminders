@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Built-in reminder picture: prayer. Drawn for Niko Reminders. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <group>
+        <path
+            android:fillColor="#FF1F1A14"
+            android:pathData="M23,4 C20,7 17,15 16,24 L11,32 L17,38 L23,32 Z" />
+        <path
+            android:fillColor="#FF1F1A14"
+            android:pathData="M25,4 C28,7 31,15 32,24 L37,32 L31,38 L25,32 Z" />
+        <path
+            android:fillColor="#FF1F1A14"
+            android:pathData="M9,35 L16,42 L13,45 L6,38 Z" />
+        <path
+            android:fillColor="#FF1F1A14"
+            android:pathData="M39,35 L32,42 L35,45 L42,38 Z" />
+    </group>
+</vector>
