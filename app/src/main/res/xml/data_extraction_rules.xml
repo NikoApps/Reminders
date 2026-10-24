@@ -15,9 +15,12 @@
         <exclude domain="device_database" path="." />
         <exclude domain="device_sharedpref" path="." />
     </cloud-backup>
-    <!-- Only the DataStore files for now. Add the folders for photos and recordings with the features
-         that make them. -->
+    <!-- Everything lives in device-protected storage, so reminders play before the first unlock
+         (Hub ADR 0036): reminders, history and settings, photos and recordings. Alarms don't move
+         with app data, so Reminders schedules them again the first time it opens on the new phone. -->
     <device-transfer>
-        <include domain="file" path="datastore/" />
+        <include domain="device_file" path="datastore/" />
+        <include domain="device_file" path="photos/" />
+        <include domain="device_file" path="recordings/" />
     </device-transfer>
 </data-extraction-rules>

@@ -1,5 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Niko Reminders</string>
-    <string name="not_ready">Not ready yet. Reminders are coming.</string>
+
+    <!-- Shared -->
+    <string name="done">Done</string>
+    <string name="open_app_info">Open app info</string>
+
+    <!-- Main screen -->
+    <string name="settings_open">Settings</string>
+    <!-- TalkBack label of a tile: the reminder's name, then its time. -->
+    <string name="tile_label">%1$s, %2$s</string>
+    <!-- TalkBack label of a tile: name, time, then Done or Missed for today. -->
+    <string name="tile_label_today">%1$s, %2$s, %3$s</string>
+    <string name="today_done">Done</string>
+    <string name="today_missed">Missed</string>
+    <string name="hint_ready">Tap a picture to hear it.</string>
+    <string name="hint_no_reminders">No reminders yet. A helper can add them in Settings.</string>
+    <string name="hint_unreadable">The saved reminders couldn\'t be read. A helper can add them again in Settings.</string>
+    <string name="hint_exact_alarms">Reminders may come late. A helper can fix this in Settings.</string>
+    <string name="hint_notifications">Reminders can\'t show on the screen. A helper can fix this in Settings.</string>
+    <string name="hint_full_screen">Reminders play but don\'t show on the locked screen. A helper can fix this in Settings.</string>
+    <string name="hint_volume">The alarm volume is off, so reminders can\'t be heard. Turn it up in the phone\'s sound settings.</string>
+    <string name="hint_needs_attention">Reminders may stop working later. A helper can fix this in Settings.</string>
+
+    <!-- Reminder screen -->
+    <string name="reminder_screen_heading">Reminder</string>
+    <!-- Read by TalkBack when the reminder screen opens. -->
+    <string name="reminder_screen_title">Reminder: %1$s</string>
+    <string name="reminder_time_done">%1$s. Done</string>
+    <string name="play_again">Play again</string>
+
+    <!-- Notifications -->
+    <string name="channel_reminders">Reminders</string>
+    <string name="channel_reminders_description">Shows the reminder on the screen when it\'s time. Reminders play their own sound.</string>
+    <string name="channel_missed">Missed reminders</string>
+    <string name="channel_missed_description">Says when a reminder played without Done being pressed.</string>
+    <string name="channel_playing">Playing</string>
+    <string name="channel_playing_description">Shows while a reminder is playing.</string>
+    <string name="notification_due">It\'s time. Set for %1$s</string>
+    <string name="notification_missed">Missed: %1$s</string>
+    <string name="notification_missed_text">Set for %1$s. Done wasn\'t pressed.</string>
+    <string name="notification_playing">Playing a reminder</string>
+
+    <!-- Settings -->
+    <string name="section_needs_attention">Needs attention</string>
+    <string name="section_reminders">Reminders</string>
+    <string name="section_screen">Screen</string>
+    <string name="section_sound">Sound</string>
+    <string name="section_history">Last 7 days</string>
+    <string name="section_voice">Voice</string>
+    <string name="section_helper">Helper</string>
+    <string name="section_phone">Phone</string>
+    <!-- A reminder row in settings: name, then time. -->
+    <string name="reminder_row">%1$s, %2$s</string>
+    <string name="place_only">The reminder on the screen</string>
+    <string name="place_top">Top</string>
+    <string name="place_bottom">Bottom</string>
+    <string name="place_top_left">Top left</string>
+    <string name="place_top_right">Top right</string>
+    <string name="place_middle_left">Middle left</string>
+    <string name="place_middle_right">Middle right</string>
+    <string name="place_bottom_left">Bottom left</string>
+    <string name="place_bottom_right">Bottom right</string>
+    <string name="place_empty">Empty</string>
+    <string name="place_off_screen">Not on the screen now, doesn\'t play</string>
+    <string name="setting_on_screen">Reminders on screen</string>
+    <string name="info_on_screen">How many reminders the main screen has room for. Nothing moves when this changes. A reminder that doesn\'t fit doesn\'t play, and comes back when there is room again.</string>
+    <plurals name="reminders_count">
+        <item quantity="one">%d reminder</item>
+        <item quantity="other">%d reminders</item>
+    </plurals>
+    <string name="reminders_count_hiding">%1$s. Not on the screen, and won\'t play: %2$s</string>
+    <string name="setting_theme">Theme</string>
+    <string name="theme_phone">Same as phone</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="setting_volume">Reminder volume</string>
+    <string name="info_volume">How loud reminders play, as a share of the phone\'s alarm volume. They play even when the phone is on silent.</string>
+    <string name="volume_percent">%1$d%% of alarm volume</string>
+    <string name="setting_keep_reminding">Keep reminding</string>
+    <string name="info_keep_reminding">Without Done, the reminder plays again every 5 minutes for this long, then shows as missed. Done is never needed: it only stops the repeats.</string>
+    <string name="keep_off">Don\'t repeat</string>
+    <string name="keep_15">Every 5 minutes for 15 minutes</string>
+    <string name="keep_30">Every 5 minutes for 30 minutes</string>
+    <string name="keep_60">Every 5 minutes for 1 hour</string>
+    <string name="setting_vibrate">Vibrate</string>
+    <string name="info_vibrate">The phone vibrates each time a reminder plays, for people who may not hear it.</string>
+    <string name="history_nothing">Nothing yet</string>
+    <string name="history_today">Today</string>
+    <string name="history_yesterday">Yesterday</string>
+    <!-- One played reminder: day, time, name, then what happened, such as "Today, 8:00 AM, White pill, done at 8:04 AM". -->
+    <string name="history_line">%1$s, %2$s, %3$s, %4$s</string>
+    <string name="history_done_at">done at %1$s</string>
+    <string name="history_missed">missed</string>
+    <string name="history_playing">playing now</string>
+    <string name="info_pin">A 4-number PIN stops reminders and settings being changed by accident. Reminders always play and Done always works without it.</string>
+    <string name="setup_again">Set up step by step</string>
+    <string name="setup_again_value">Go through the main settings again</string>
+    <string name="info_phone_maker">Some phones stop apps they think are unused and take their permissions away. That can stop reminders. Keep Niko Reminders allowed in the phone maker\'s settings.</string>
+
+    <!-- Phone health -->
+    <string name="health_exact_alarms">Alarms and reminders</string>
+    <string name="health_exact_alarms_value">Turn on for %1$s, so reminders play on the minute</string>
+    <string name="health_notifications">Notifications</string>
+    <string name="health_notifications_value">Turn on for %1$s, so reminders show on the screen</string>
+    <string name="health_full_screen">Full screen notifications</string>
+    <string name="health_full_screen_value">Turn on for %1$s, so reminders show on the locked screen</string>
+    <string name="health_alarm_volume">Alarm volume</string>
+    <string name="health_alarm_volume_value">Turn it up, so reminders can be heard</string>
+
+    <!-- First-run setup -->
+    <string name="setup_reminders_info">Add a reminder for each thing to remember, such as a medicine. Record a message in your own voice and add a photo, so it can be understood without reading.</string>
+    <string name="setup_phone_info">These phone settings let reminders play on time and show on the locked screen.</string>
+    <string name="setup_phone_ok">These settings are fine.</string>
+
+    <!-- Reminder editor -->
+    <string name="editor_add_title">Add a reminder</string>
+    <string name="editor_change_title">Change a reminder</string>
+    <string name="editor_photo">Photo</string>
+    <string name="editor_photo_how">A photo of the pill, the packet or whatever the reminder is for. It shows on the screen when it\'s time.</string>
+    <string name="editor_photo_label">The photo on the reminder</string>
+    <string name="editor_photo_take">Take a photo</string>
+    <string name="editor_photo_choose">Choose a photo</string>
+    <string name="editor_photo_remove">Remove the photo</string>
+    <string name="editor_photo_unreadable">That photo couldn\'t be opened. Try another one.</string>
+    <string name="editor_no_photo_app">This phone has no app to choose a photo from. Take a photo instead.</string>
+    <string name="editor_no_camera_app">This phone has no camera app to take a photo with. Choose a photo instead.</string>
+    <string name="crop_title">Fit the photo in the square</string>
+    <!-- TalkBack label of the square showing the photo while it's cropped. -->
+    <string name="crop_preview">The photo as it will look on the reminder</string>
+    <string name="editor_message">Message</string>
+    <string name="message_how">Tap Record and say who is speaking, what to do and how. For example: \"Mum, it\'s Sita. Time for the white pill, with water, after breakfast.\" It stops by itself after 15 seconds.</string>
+    <string name="message_none">No recording yet. Without one, the phone\'s voice says the name.</string>
+    <string name="message_ready">Recorded. Tap Play to hear it.</string>
+    <string name="message_new">Recorded. It is kept when you tap Save.</string>
+    <string name="message_removed">The recording goes when you tap Save.</string>
+    <string name="message_now">Recording. Say the words, then tap Stop.</string>
+    <string name="message_too_short">Nothing was recorded. Tap Record, wait a moment, then speak.</string>
+    <string name="message_failed">The microphone couldn\'t be used. Close other apps that may be using it, then try again.</string>
+    <string name="message_needs_mic">Recording needs the microphone. Tap Record, then choose Allow.</string>
+    <string name="message_mic_off">The microphone is turned off for Niko Reminders. Turn it on in the phone\'s settings for Niko Reminders.</string>
+    <string name="message_ask_mic">The phone asks to allow the microphone, to record.</string>
+    <string name="message_record">Record</string>
+    <string name="message_stop">Stop</string>
+    <string name="message_play">Play</string>
+    <string name="message_stop_playing">Stop playing</string>
+    <string name="message_record_again">Record again</string>
+    <string name="message_delete">Delete the recording</string>
+    <string name="message_kept">The recording stays on this phone and is never sent anywhere.</string>
+    <string name="editor_name">Name</string>
+    <string name="editor_name_label">Name on the screen</string>
+    <string name="editor_name_help">A few words, such as White pill. The phone\'s voice says it when there is no recording.</string>
+    <string name="editor_name_missing">Type a name for the reminder.</string>
+    <string name="editor_when">When</string>
+    <string name="editor_time">Time</string>
+    <string name="editor_time_type">Type the time instead</string>
+    <string name="editor_time_clock">Use the clock instead</string>
+    <string name="editor_same_time">Another reminder plays at this time: %1$s. Both play, one after the other.</string>
+    <string name="editor_days">Days</string>
+    <string name="repeat_every_day">Every day</string>
+    <string name="repeat_chosen_days">Chosen days</string>
+    <string name="repeat_once">Once, on a date</string>
+    <!-- TalkBack label of a day button in the editor. -->
+    <string name="day_chosen">%1$s, chosen</string>
+    <string name="day_not_chosen">%1$s, not chosen</string>
+    <string name="editor_no_days">Choose at least one day.</string>
+    <string name="editor_date">Date</string>
+    <string name="editor_past">That time has already passed. Choose a later date or time.</string>
+    <string name="editor_place">Place on the screen</string>
+    <string name="editor_place_taken">That place has a reminder in it now. Choose another place.</string>
+    <string name="editor_fix_first">Some things above need changing before this can be saved.</string>
+    <string name="editor_save">Save</string>
+    <string name="editor_remove">Delete the reminder</string>
+    <string name="editor_remove_title">Delete %1$s?</string>
+    <string name="editor_remove_text">Its photo, recording and place on the screen go too.</string>
+    <string name="editor_remove_confirm">Delete reminder</string>
+    <string name="editor_remove_keep">Keep it</string>
 </resources>
