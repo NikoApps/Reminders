@@ -15,7 +15,7 @@ class RemindersCodecTest {
         val reminders = listOf(
             Reminder("6f1c2a9e", "White pill; with water, after food", LocalTime.of(8, 0), Repeat.EveryDay, 0, 2, 1, 123L),
             Reminder("b", "नमाज़", LocalTime.of(13, 45), Repeat.Days(setOf(DayOfWeek.FRIDAY, DayOfWeek.MONDAY)), 3),
-            Reminder("c", "Doctor", LocalTime.of(23, 59), Repeat.Once(LocalDate.of(2026, 11, 2)), 5),
+            Reminder("c", "Doctor", LocalTime.of(23, 59), Repeat.Once(LocalDate.of(2026, 11, 2)), 5, picture = Picture.Doctor),
         )
         assertEquals(reminders, RemindersCodec.decode(RemindersCodec.encode(reminders)))
     }
@@ -26,6 +26,18 @@ class RemindersCodecTest {
         val text = RemindersCodec.encode(listOf(good)) + ",garbage;x"
         assertEquals(listOf(good), RemindersCodec.decode(text))
         assertTrue(RemindersCodec.decode(null).isEmpty())
+    }
+
+    @Test
+    fun `a record saved before pictures reads with no picture`() {
+        val old = "0;YQ;UGlsbA;480;d;0;0;0"
+        assertEquals(null, RemindersCodec.decode(old).single().picture)
+    }
+
+    @Test
+    fun `picture keys never change`() {
+        assertEquals(Picture.entries.size, Picture.entries.map { it.key }.toSet().size)
+        assertEquals(Picture.EyeDrops, Picture.of("eye_drops"))
     }
 
     @Test

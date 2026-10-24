@@ -46,6 +46,8 @@ data class Reminder(
      * 8:00 isn't missed today.
      */
     val activeFrom: Long = 0,
+    /** A built-in picture, shown when there's no photo. Null for none. */
+    val picture: Picture? = null,
 ) {
     val hasPhoto: Boolean get() = photoVersion > 0
     val hasRecording: Boolean get() = recordingVersion > 0
